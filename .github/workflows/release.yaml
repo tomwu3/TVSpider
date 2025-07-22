@@ -10,12 +10,7 @@ jobs:
       matrix:
         os: [ "ubuntu-latest" ]
     steps:
-      - name: Clone Base Repository
-        uses: actions/checkout@v3
-        with:
-          repository: ${{ secrets.GH_PATH}}
-          fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN}}
+      
 
       - name: Clone TVSpider Repository
         uses: actions/checkout@v3
@@ -57,17 +52,7 @@ jobs:
           commit_msg="* 更新TVConfig和OpenConfig"
           git commit -a -m "$commit_msg"
 
-      - name: Push JS Config Changes To Gitee
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GE_TOKEN }}
-          repository: ${{ secrets.GE_PATH }}
-          directory: .
-          branch: js
-          force: true
-          github_url: https://gitee.com
-        env:
-          GITHUB_ACTOR: ${{ secrets.GH_ACTOR }}
+    
 
       - name: Push JS Config Changes To Github
         uses: ad-m/github-push-action@master
